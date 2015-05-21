@@ -7,6 +7,7 @@ app.AppView = Backbone.View.extend({
 	},
 	initialize: function() {
 		this.listenTo(app.posts, 'add', this.addOne);
+		this.listenTo(app.posts, 'reset', this.addAll);
 	},
 	addOne: function(post) {
 		var view = new app.PostView({
@@ -15,6 +16,10 @@ app.AppView = Backbone.View.extend({
 		this.$('#posts').append(
 			view.render().el
 		);
+	},
+	addAll: function() {
+		this.$('#posts').empty();
+		app.posts.each(this.addOne, this);
 	},
 	newPostSubmit: function(e) {
 		e.preventDefault();
