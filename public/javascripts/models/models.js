@@ -1,6 +1,7 @@
 var app = app || {};
 
 app.PostModel = Backbone.Model.extend({
+	idAttribute: '_id',
 	defaults: {
 		title: '',
 		content: '',
