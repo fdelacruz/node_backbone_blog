@@ -4,11 +4,9 @@ var Post = require('../models/post');
 
 // base url: '/api'
 router.get('/', function(req, res) {
-	res.send([{
-		title: 'Hello World',
-		content: 'My Content',
-		posted: 'now'
-	}]);
+	Post.find({}, function(err, docs) {
+		res.send(docs);
+	});
 });
 
 router.post('/', function(req, res) {
